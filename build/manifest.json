@@ -1,0 +1,53 @@
+{
+    "manifest_version": 2,
+    "name": "temp-chrome-ext",
+    "devtools_page": "./html/devtool.html",
+    "description": "Better ext development",
+    "icons": {
+        "16": "./images/icon16.png"
+    },
+    "version": "1.0",
+    "author": "Daniel Derevjanik <daniel.derevjanik@gmail.com>",
+    "offline_enabled": true,
+    "options_page": "./html/option.html",
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "./js/content.js"
+            ],
+            "runt_at": "document_start",
+            "all_frames": true // (remove "all_frames": true if you don't want to insert the frame in every subframe.)
+        }
+    ],
+    "browser_action": {
+        "default_icon": {
+            "16": "./images/icon16.png"
+        },
+        "default_popup": "./html/popup.html"
+    },
+    "background": {
+        "persistant": false,
+        "scripts": [
+            "./js/background.js"
+        ]
+    },
+    "permissions": [
+        "pageCapture",
+        "browsingData",
+        "tabs",
+        "activeTab",
+        "notifications",
+        "windows",
+        "storage",
+        "webRequest",
+        "system",
+        "<all_urls>"
+    ],
+    "web_accessible_resources": [
+        "/js/inject.js",
+        "/html/externalframe.html"
+    ]
+}
